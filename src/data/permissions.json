@@ -1,0 +1,17 @@
+[
+    {
+        "is_menu": 1,
+        "icon": "dashboard",
+        "name": "config.users.access"
+    },
+    {
+        "is_menu": 0,
+        "icon": "settings",
+        "name": "config.users.create"
+    },
+    {
+        "is_menu": 0,
+        "icon": "user",
+        "name": "config.users.edit"
+    }
+]

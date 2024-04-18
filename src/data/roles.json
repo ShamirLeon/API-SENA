@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Super Admin",
+        "displayName": "Super Administrador",
+        "description": "Este es el rol de super administrador",
+        "permissions": ["66203cd85678be0a58563a9b", "66203cd85678be0a58563a9b", "66203cd85678be0a58563a9a"]
+    }
+]

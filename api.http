@@ -1,0 +1,2 @@
+### Get test
+GET http://localhost:4000/api/user/662055a5bdd924e0dd14665d
