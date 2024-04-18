@@ -14,4 +14,6 @@ router.post('/', [
 
 router.get('/:id', userController.usuarioGetById)
 
+router.post('/login', userController.login)
+
 export default router

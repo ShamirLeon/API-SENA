@@ -30,6 +30,21 @@ const userRepository = {
     } catch (error) {
       return { message: 'Internal server error', error }
     }
+  },
+
+  async getByEmail (email) {
+    try {
+      const user = await UserModel.findOne({ email }).populate({
+        path: 'role',
+        populate: {
+          path: 'permissions',
+          model: 'permissions'
+        }
+      })
+      return user
+    } catch (error) {
+      return { message: 'Internal server error', error }
+    }
   }
 }
 

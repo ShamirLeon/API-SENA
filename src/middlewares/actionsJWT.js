@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
-import { existsUserById } from '../helpers/user'
-import defaultCtr from '../helpers/defaultCtr'
-import User from '../models/User/User.model'
+import { validateUserById } from '../helpers/user.helper.js'
+import defaultCtr from '../helpers/defaultCtr.js'
+import User from '../models/User/User.model.js'
 
 const generateToken = (uid) => {
   return new Promise((resolve, reject) => {
@@ -56,7 +56,7 @@ async function checkToken (token) {
   }
 
   // eslint-disable-next-line no-unused-vars
-  const user = await existsUserById(__id)
+  const user = await validateUserById(__id)
 }
 
 export {
