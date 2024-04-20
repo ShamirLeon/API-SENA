@@ -60,13 +60,11 @@ const userRepository = {
   async saveImage (userID, file) {
     try {
       const newPath = `uploads/avatars/${file.originalname}`
-      const __dirname = path.resolve(path.dirname(''), '../node/uploads/avatars')
       const user = await UserModel.findById(userID)
 
       /* Delete the old avatar */
       if (user.avatar) {
-        const avatarPath = path.join(__dirname, user.avatar)
-        fs.unlinkSync(avatarPath)
+        this.deleteAvatar(user.avatar)
       }
 
       /* Rename and replace the file in the fs */
@@ -81,8 +79,19 @@ const userRepository = {
     } catch (error) {
       console.log(error)
     }
-  }
+  },
 
+  async deleteAvatar (avatar) {
+    try {
+      const __dirname = path.resolve(path.dirname(''), '../node/uploads/avatars')
+      const avatarPath = path.join(__dirname, avatar)
+
+      /* Delete file from de fs */
+      fs.unlinkSync(avatarPath)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export default userRepository

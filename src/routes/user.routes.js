@@ -7,7 +7,7 @@ import { upload } from '../middlewares/user.js'
 
 const router = express.Router()
 
-const { login, usuarioGetById, usuarioPost, updateAvatar } = userController
+const { login, usuarioGetById, usuarioPost, updateAvatar, deleteAvatar } = userController
 
 router.post('/', [
   // middlewares
@@ -20,5 +20,7 @@ router.get('/:id', usuarioGetById)
 router.post('/login', login)
 
 router.post('/avatar', upload.single('avatar'), updateAvatar)
+
+router.delete('/avatar/:userID', deleteAvatar)
 
 export default router

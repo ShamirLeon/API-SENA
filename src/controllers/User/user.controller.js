@@ -2,6 +2,7 @@ import bcryptjs from 'bcryptjs'
 import defaultCtr from '../../helpers/defaultCtr.js'
 import userRepository from '../../repostories/User/user.repository.js'
 import { generateToken } from '../../middlewares/actionsJWT.js'
+import UserModel from '../../models/User/User.model.js'
 
 const userController = {
 
@@ -50,11 +51,26 @@ const userController = {
     }
   },
 
+  /* Update Avatar */
   updateAvatar: async (req, res) => {
     const { userID } = req.body
     try {
       await userRepository.saveImage(userID, req.file)
       return defaultCtr.response(res, 200, 'Avatar updated successfully')
+    } catch (error) {
+      console.log(error)
+      return defaultCtr.error(res, 500, 'Internal server error', error)
+    }
+  },
+
+  /* Delete user avatar */
+  deleteAvatar: async (req, res) => {
+    const { userID } = req.params
+    try {
+      const user = await UserModel.findById(userID)
+      await userRepository.deleteAvatar(user.avatar) // delete avatar from server
+      await UserModel.findOneAndUpdate({ _id: userID }, { $unset: { avatar: '' } }) // delete avatar from user
+      return defaultCtr.response(res, 200, 'Avatar deleted successfully')
     } catch (error) {
       console.log(error)
       return defaultCtr.error(res, 500, 'Internal server error', error)
