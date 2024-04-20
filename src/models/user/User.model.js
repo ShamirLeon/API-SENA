@@ -8,6 +8,10 @@ const UserSchema = new Schema({
   password: String,
   email: String,
   emailVerified: Boolean,
+  avatar: {
+    type: String,
+    default: 'default.jpg'
+  },
   status: {
     type: Number,
     default: 1

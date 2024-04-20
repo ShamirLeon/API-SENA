@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'node:path'
 import connectDB from '../../db.js'
 import apiRoutes from '../routes/index.js'
 import createPermissions from '../helpers/createPermissions.js'
@@ -20,7 +21,10 @@ class server {
   }
 
   middlewares () {
+    const __dirname = path.resolve(path.dirname(''), '../node/uploads')
+    console.log(path.join(__dirname, 'avatars'))
     this.app.use(express.json())
+    this.app.use(express.static(path.join(__dirname, 'avatars')))
   }
 
   async dbConnection () {
@@ -29,7 +33,7 @@ class server {
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`Server is running on port ${this.port}`)
+      console.log(`Server is running on port http:://localhost:${this.port}`)
     })
   }
 }

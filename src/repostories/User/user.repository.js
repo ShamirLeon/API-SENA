@@ -1,5 +1,6 @@
 import UserModel from '../../models/User/User.model.js'
 import bcryptjs from 'bcryptjs'
+import fs from 'node:fs'
 
 const userRepository = {
   async getById (id) {
@@ -45,7 +46,26 @@ const userRepository = {
     } catch (error) {
       return { message: 'Internal server error', error }
     }
+  },
+
+  async updateUserAvatar (id, avatar) {
+    try {
+      await UserModel.findByIdAndUpdate(id, { avatar })
+    } catch (error) {
+      return { message: 'Internal server error', error }
+    }
+  },
+
+  saveImage (file) {
+    try {
+      const newPath = `uploads/avatars/${file.originalname}`
+      fs.renameSync(file.path, newPath)
+      return newPath
+    } catch (error) {
+      console.log(error)
+    }
   }
+
 }
 
 export default userRepository

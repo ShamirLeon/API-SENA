@@ -48,6 +48,18 @@ const userController = {
       console.log(error)
       return defaultCtr.error(res, 500, 'Internal server error', error)
     }
+  },
+
+  updateAvatar: async (req, res) => {
+    const { userID } = req.body
+    try {
+      userRepository.saveImage(req.file)
+      await userRepository.updateUserAvatar(userID, req.file.originalname)
+      return defaultCtr.response(res, 200, 'Avatar updated successfully')
+    } catch (error) {
+      console.log(error)
+      return defaultCtr.error(res, 500, 'Internal server error', error)
+    }
   }
 }
 
