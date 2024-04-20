@@ -22,7 +22,6 @@ class server {
 
   middlewares () {
     const __dirname = path.resolve(path.dirname(''), '../node/uploads')
-    console.log(path.join(__dirname, 'avatars'))
     this.app.use(express.json())
     this.app.use(express.static(path.join(__dirname, 'avatars')))
   }

@@ -53,8 +53,7 @@ const userController = {
   updateAvatar: async (req, res) => {
     const { userID } = req.body
     try {
-      userRepository.saveImage(req.file)
-      await userRepository.updateUserAvatar(userID, req.file.originalname)
+      await userRepository.saveImage(userID, req.file)
       return defaultCtr.response(res, 200, 'Avatar updated successfully')
     } catch (error) {
       console.log(error)
