@@ -1,5 +1,5 @@
 import permissionsData from "../data/permissions.json" assert { type: "json" };
-import Permission from "../models/permission/Permission.model.js";
+import Permission from "../models/Permission/Permission.model.js";
 
 const createPermissions = async () => {
   try {

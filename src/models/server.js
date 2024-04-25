@@ -2,9 +2,10 @@ import express from 'express'
 import path from 'node:path'
 import connectDB from '../../db.js'
 import apiRoutes from '../routes/index.js'
-import createPermissions from '../helpers/createPermissions.js'
-import createRoles from '../helpers/createRoles.js'
-
+import createPermissions from '../initialConfig/createPermissions.js'
+import createRoles from '../initialConfig/createRoles.js'
+import createCountry from '../initialConfig/createCountry.js'
+import createCities from '../initialConfig/createCities.js'
 class server {
   constructor () {
     this.port = process.env.PORT || 3000
@@ -14,6 +15,8 @@ class server {
     this.routes()
     createPermissions()
     createRoles()
+    createCountry()
+    createCities()
   }
 
   routes () {

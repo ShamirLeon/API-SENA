@@ -1,5 +1,5 @@
 import rolesData from "../data/roles.json" assert { type: "json" };
-import Roles from "../models/roles/Roles.model.js";
+import Roles from "../models/Roles/Roles.model.js";
 
 const createRoles = async () => {
   try {
